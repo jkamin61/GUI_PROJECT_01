@@ -4,7 +4,7 @@ import java.util.List;
 class Brygada {
     private String nazwa;
     private Brygadzista brygadzista;
-    private List<Pracownik> pracownicy = new ArrayList<>();
+    private List<Pracownik> pracownicy;
 
     public Brygada(String nazwa, Brygadzista brygadzista, List<Pracownik> pracownicy) {
         this.nazwa = nazwa;
