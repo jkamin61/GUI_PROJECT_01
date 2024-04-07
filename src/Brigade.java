@@ -32,7 +32,11 @@ class Brigade {
     }
 
     public void setEmployees(List<Employee> employees) {
-        this.employees = employees;
+        this.employees.addAll(employees);
+    }
+
+    public void setEmployees(Employee employee) {
+        this.employees.add(employee);
     }
 
     @Override
@@ -44,9 +48,6 @@ class Brigade {
                 '}';
     }
 
-    public void addEmployeesToBrigade(Employee employee) {
-        employees.add(employee);
-    }
 
     public void deleteEmployeeFromBrigade(Employee employee) {
         employees.remove(employee);

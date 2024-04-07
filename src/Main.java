@@ -9,7 +9,6 @@ public class Main {
             Employee programista1 = new Employee("Jan", "Kowalski", new Date(90, 5, 10), dzialProgramistow);
             Employee programista2 = new Employee("Anna", "Nowak", new Date(85, 8, 20), dzialProgramistow);
 
-
             EmployeeDepartment dzialSprzedazy = EmployeeDepartment.createDepartment("SALES");
             Employee sprzedawca1 = new Employee("Marek", "Jankowski", new Date(88, 2, 15), dzialSprzedazy);
             Employee sprzedawca2 = new Employee("Katarzyna", "Nowicka", new Date(92, 11, 1), dzialSprzedazy);
@@ -30,8 +29,10 @@ public class Main {
             Brigade brigade1 = new Brigade("brygada1", foreman1, new ArrayList<>());
             System.out.println("Brygada: " + brigade1.getBrigadesName() + " brygadzista: " + brigade1.getForeman().getInitial());
 
-            brigade1.addEmployeesToBrigade(programista1);
-            brigade1.addEmployeesToBrigade(programista2);
+//            brigade1.setEmployees(programista1);
+//            brigade1.setEmployees(programista2);
+            brigade1.setEmployees(Arrays.asList(programista1, programista2));
+            
             System.out.println("Pracownicy brygady: " + brigade1.getEmployees());
             //Ustalenie użytkowników i ich uprawnień
             User user1 = new User("Jan", "Kowalski", new Date(90, 5, 10), dzialProgramistow, "login123", "haslo123");

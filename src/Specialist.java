@@ -1,6 +1,7 @@
 import java.util.Date;
+
 class Specialist extends Employee {
-    private String specialization;
+    String specialization;
 
     public Specialist(String name, String surname, Date dateOfBirth, EmployeeDepartment department, String specialization) {
         super(name, surname, dateOfBirth, department);
