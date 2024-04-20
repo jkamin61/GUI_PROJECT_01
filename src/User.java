@@ -1,11 +1,11 @@
-import java.util.Date;
+import java.time.LocalDateTime;
 
 public class User extends Employee {
     private String login;
     private String password;
     private String initial;
 
-    public User(String name, String surname, Date dateOfBirth, EmployeeDepartment department, String login, String password) {
+    public User(String name, String surname, LocalDateTime dateOfBirth, EmployeeDepartment department, String login, String password) {
         super(name, surname, dateOfBirth, department);
         this.login = login;
         this.password = password;
@@ -21,6 +21,7 @@ public class User extends Employee {
         super.setSurname(surname);
         this.initial = (this.getName().charAt(0) + "" + surname.charAt(0)).toUpperCase();
     }
+
     public String getLogin() {
         return login;
     }
