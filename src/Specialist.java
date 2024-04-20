@@ -1,9 +1,9 @@
-import java.util.Date;
+import java.time.LocalDateTime;;
 
 class Specialist extends Employee {
     String specialization;
 
-    public Specialist(String name, String surname, Date dateOfBirth, EmployeeDepartment department, String specialization) {
+    public Specialist(String name, String surname, LocalDateTime dateOfBirth, EmployeeDepartment department, String specialization) {
         super(name, surname, dateOfBirth, department);
         this.specialization = specialization;
     }
