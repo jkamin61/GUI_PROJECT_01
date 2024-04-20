@@ -1,12 +1,13 @@
+import java.time.LocalDateTime;
 import java.util.*;
 
 class Employee implements Comparable<Employee> {
     private static List<Employee> employees = new ArrayList<>();
     private String name, surname;
     private EmployeeDepartment employeeDepartment;
-    private Date dateOfBirth;
+    private LocalDateTime dateOfBirth;
 
-    public Employee(String name, String surname, Date dateOfBirth, EmployeeDepartment employeeDepartment) {
+    public Employee(String name, String surname, LocalDateTime dateOfBirth, EmployeeDepartment employeeDepartment) {
         this.name = name;
         this.surname = surname;
         this.dateOfBirth = dateOfBirth;
@@ -36,7 +37,7 @@ class Employee implements Comparable<Employee> {
         return surname;
     }
 
-    public Date getDateOfBirth() {
+    public LocalDateTime getDateOfBirth() {
         return dateOfBirth;
     }
 
