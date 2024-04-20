@@ -2,13 +2,13 @@ import java.util.HashMap;
 import java.util.Map;
 
 class Job extends Thread {
-    private static int numberOfJobs = 0;
-    private int jobId;
     private TypeOfJob typeOfJob;
     private int jobsAmountOfTime;
     private boolean isFinished;
     private String description;
-    private Map<Integer, Job> awaitingJobs;
+    private static int numberOfJobs = 0;
+    private int jobId;
+    private Map<Integer, Job> jobs;
 
     public Job(TypeOfJob typeOfJob, int jobsAmountOfTime, String description) {
         this.jobId = ++numberOfJobs;
@@ -16,15 +16,15 @@ class Job extends Thread {
         this.jobsAmountOfTime = jobsAmountOfTime;
         this.isFinished = false;
         this.description = description;
-        this.awaitingJobs = new HashMap<>();
+        this.jobs = new HashMap<>();
     }
 
-    public static Job getJob(int numer) {
-        return null;
+    public Job getJobs(int jobId) {
+        return jobs.get(jobId);
     }
 
-    public void addAwaitingJob(Job job) {
-        awaitingJobs.put(job.getJobId(), job);
+    public void addJob(Job job) {
+        jobs.put(job.getJobId(), job);
     }
 
     public int getJobId() {
@@ -33,7 +33,6 @@ class Job extends Thread {
 
     @Override
     public void run() {
-        System.out.println(toString());
     }
 
     @Override
@@ -43,6 +42,6 @@ class Job extends Thread {
                 "\nTime job has consumed: " + jobsAmountOfTime +
                 "\nIs finished: " + isFinished +
                 "\nDescription: " + description +
-                "\nAwaiting jobs: " + awaitingJobs.keySet();
+                "\nAwaiting jobs: " + jobs.keySet();
     }
 }
