@@ -1,4 +1,4 @@
-import java.util.Date;
+import java.time.LocalDateTime;
 import java.util.List;
 
 public class Foreman extends User {
@@ -6,7 +6,7 @@ public class Foreman extends User {
     List<Brigade> listOfBrigades;
     List<Contract> listOfContracts;
 
-    public Foreman(String name, String surname, Date dateOfBirth, EmployeeDepartment department, String login, String password, String brigade) {
+    public Foreman(String name, String surname, LocalDateTime dateOfBirth, EmployeeDepartment department, String login, String password, String brigade) {
         super(name, surname, dateOfBirth, department, login, password);
         this.brigade = brigade;
     }
