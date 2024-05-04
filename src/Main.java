@@ -47,8 +47,8 @@ public class Main {
             contract.addJob(job1);
             contract.addJob(job2);
             contract.addJob(job3);
-            contract.addEmployeeToDepartment("Dział A", "Mariusz Nowak");
-            contract.addEmployeeToDepartment("Dział B", "Anna Wiśniewska");
+            contract.addEmployeeToDepartment("Dział IT", "Mariusz Nowak");
+            contract.addEmployeeToDepartment("Dział IT", "Anna Wiśniewska");
 
             job2.addJob(job1);
             job3.addJob(job2);
@@ -62,7 +62,7 @@ public class Main {
             watek3.start();
 
             // Wyświetlanie informacji o zleceniu
-//            System.out.println(contract.toString());
+            System.out.println("Contract information: " + contract);
 
 
         } catch (NotUniqueException e) {
