@@ -2,13 +2,13 @@ import java.util.HashMap;
 import java.util.Map;
 
 class Job extends Thread {
-    private TypeOfJob typeOfJob;
-    private int jobsAmountOfTime;
+    TypeOfJob typeOfJob;
+    int jobsAmountOfTime;
     private boolean isFinished;
-    private String description;
+    String description;
     private static int numberOfJobs = 0;
-    private int jobId;
-    private Map<Integer, Job> jobs;
+    int jobId;
+    Map<Integer, Job> jobs;
 
     public Job(TypeOfJob typeOfJob, int jobsAmountOfTime, String description) {
         this.jobId = ++numberOfJobs;
