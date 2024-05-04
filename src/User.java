@@ -42,4 +42,12 @@ public class User extends Employee {
         this.password = password;
     }
 
+    @Override
+    public String toString() {
+        return "User{" +
+                "login='" + login + '\'' +
+                ", password='" + password + '\'' +
+                ", initial='" + initial + '\'' +
+                '}';
+    }
 }
