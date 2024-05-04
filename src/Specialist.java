@@ -15,4 +15,11 @@ class Specialist extends Employee {
     public String getSpecialization() {
         return specialization;
     }
+
+    @Override
+    public String toString() {
+        return "Specialist{" +
+                "specialization='" + specialization + '\'' +
+                '}';
+    }
 }
