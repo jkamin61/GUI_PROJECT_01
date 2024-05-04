@@ -43,26 +43,17 @@ public class Main {
             Job job2 = new Job(TypeOfJob.Installation, 20, "Praca montażowa 1");
             Job job3 = new Job(TypeOfJob.Deinstallation, 15, "Praca demontażowa 1");
 
-            Contract contract = new Contract("Jan Kowalski", brigade1, LocalDateTime.now());
-            contract.addJob(job1);
-            contract.addJob(job2);
-            contract.addJob(job3);
-            contract.addEmployeeToDepartment("Dział IT", "Mariusz Nowak");
-            contract.addEmployeeToDepartment("Dział IT", "Anna Wiśniewska");
-
-            job2.addJob(job1);
-            job3.addJob(job2);
-
-            Thread watek1 = new Thread(job1);
-            Thread watek2 = new Thread(job2);
-            Thread watek3 = new Thread(job3);
-
-            watek1.start();
-            watek2.start();
-            watek3.start();
-
+            Contract contract1 = new Contract("Jan Kowalski", brigade1, LocalDateTime.now());
+            contract1.run();
+            contract1.addJob(job1);
+            contract1.addJob(job2);
+            contract1.addJob(job3);
+            contract1.addEmployeeToDepartment("Dział A", "Mariusz Nowak");
+            contract1.addEmployeeToDepartment("Dział B", "Anna Wiśniewska");
             // Wyświetlanie informacji o zleceniu
-            System.out.println("Contract information: " + contract);
+            System.out.println("Contract information: " + contract1);
+            contract1.endContract(contract1);
+            Contract.getContractStatus(contract1);
 
 
         } catch (NotUniqueException e) {
