@@ -63,13 +63,19 @@ class Contract implements Runnable {
         return this.foreman.equals(foreman);
     }
 
-    public static void endContract(Contract contract) {
+    public void endContract(Contract contract) {
         contract.isFinished = true;
         contract.dateOfEnd = LocalDateTime.now();
     }
 
-    public static ContractStatus getContractStatus(Contract contract) {
-        return contract.contractStatus;
+    public static void getContractStatus(Contract contract) {
+        if (contract.isFinished) {
+            System.out.println("Contract has ended");
+        } else if (contract.isStarted) {
+            System.out.println("Contract is running");
+        } else {
+            System.out.println("Contract has not started yet");
+        }
     }
 
     @Override
@@ -82,6 +88,7 @@ class Contract implements Runnable {
 
     @Override
     public void run() {
-
+        isStarted = true;
+        System.out.println("Contract is running");
     }
 }
