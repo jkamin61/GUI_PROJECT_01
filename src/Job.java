@@ -33,6 +33,12 @@ class Job extends Thread {
 
     @Override
     public void run() {
+        try {
+            Thread.sleep(jobsAmountOfTime);
+            isFinished = true;
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
