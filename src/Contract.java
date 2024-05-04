@@ -75,9 +75,9 @@ class Contract implements Runnable {
     @Override
     public String toString() {
         return "Contract number: " + contractId +
-                "\nJobs: " + jobs.keySet() +
+                "\nJobs: " + jobs +
                 "\nForeman: " + foreman +
-                "\nEmployee's Department: " + employeesDepartment.keySet();
+                "\nEmployee's Department: " + employeesDepartment;
     }
 
     @Override
