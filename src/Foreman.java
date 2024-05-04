@@ -26,4 +26,13 @@ public class Foreman extends User {
     public List<Contract> getListOfContracts() {
         return listOfContracts;
     }
+
+    @Override
+    public String toString() {
+        return "Foreman{" +
+                "brigade='" + brigade + '\'' +
+                ", listOfBrigades=" + listOfBrigades +
+                ", listOfContracts=" + listOfContracts +
+                '}';
+    }
 }
