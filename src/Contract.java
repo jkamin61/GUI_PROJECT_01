@@ -51,8 +51,13 @@ class Contract implements Runnable {
         this.isBrigadeAssigned = true;
     }
 
-    public void addJob(Job job) {
+    public void addJobs(Job job) {
+        System.out.println("Job ID: " + job.getJobId() + " has been added to contract");
         jobs.put(job.getJobId(), job);
+    }
+
+    public void getJobs(int jobId) {
+        jobs.get(jobId);
     }
 
     public void addEmployeeToDepartment(String department, String employee) {
@@ -80,15 +85,20 @@ class Contract implements Runnable {
 
     @Override
     public String toString() {
-        return "Contract number: " + contractId +
-                "\nJobs: " + jobs +
-                "\nForeman: " + foreman +
-                "\nEmployee's Department: " + employeesDepartment;
+        return "Contract {" +
+                ", contractId=" + contractId +
+                ", jobs number=" + jobs.keySet() +
+                ", foreman='" + foreman + '\'' +
+                ", brigade=" + brigade +
+                ", isBrigadeAssigned=" + isBrigadeAssigned +
+                ", dateOfContractCreation=" + dateOfContractCreation +
+                '}';
     }
 
     @Override
     public void run() {
         isStarted = true;
-        System.out.println("Contract is running");
+        System.out.println("Contract ID: " + contractId + " is running");
+        System.out.println("Contract information: " + this);
     }
 }
