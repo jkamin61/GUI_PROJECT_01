@@ -4,7 +4,7 @@ import java.util.Map;
 class Job extends Thread {
     TypeOfJob typeOfJob;
     int jobsAmountOfTime;
-    private boolean isFinished;
+    boolean isFinished;
     String description;
     private static int numberOfJobs = 0;
     int jobId;
@@ -43,11 +43,13 @@ class Job extends Thread {
 
     @Override
     public String toString() {
-        return "Job ID: " + jobId +
-                "\nType of work: " + typeOfJob +
-                "\nTime job has consumed: " + jobsAmountOfTime +
-                "\nIs finished: " + isFinished +
-                "\nDescription: " + description +
-                "\nAwaiting jobs: " + jobs.keySet();
+        return "Job{" +
+                "typeOfJob=" + typeOfJob +
+                ", jobsAmountOfTime=" + jobsAmountOfTime +
+                ", isFinished=" + isFinished +
+                ", description='" + description + '\'' +
+                ", jobId=" + jobId +
+                ", jobs=" + jobs +
+                '}';
     }
 }
