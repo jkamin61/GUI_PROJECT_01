@@ -52,15 +52,15 @@ public class Main {
             contract1.run();
 
             job1.start();
-            watchJob(job1);
+            Job.watchJob(job1);
             job1.join();
 
             job2.start();
-            watchJob(job2);
+            Job.watchJob(job2);
             job2.join();
 
             job3.start();
-            watchJob(job3);
+            Job.watchJob(job3);
             job3.join();
 
             contract1.addEmployeeToDepartment("Dział A", "Mariusz Nowak");
@@ -76,20 +76,5 @@ public class Main {
         }
 
 
-    }
-
-    public static void watchJob(Job job) {
-        System.out.println("Starting job ID: " + job.getJobId());
-        while (job.isAlive()) {
-            System.out.println("Job ID: " + job.getJobId() + " is still running");
-            try {
-                Thread.sleep(1000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        }
-        if (job.isFinished) {
-            System.out.println("Job ID: " + job.getJobId() + " has finished");
-        }
     }
 }
