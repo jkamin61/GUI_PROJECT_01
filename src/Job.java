@@ -41,6 +41,21 @@ class Job extends Thread {
         }
     }
 
+    public static void watchJob(Job job) {
+        System.out.println("Starting job ID: " + job.getJobId());
+        while (job.isAlive()) {
+            System.out.println("Job ID: " + job.getJobId() + " is still running");
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+        if (job.isFinished) {
+            System.out.println("Job ID: " + job.getJobId() + " has finished");
+        }
+    }
+
     @Override
     public String toString() {
         return "Job{" +
