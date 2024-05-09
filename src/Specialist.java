@@ -1,25 +1,25 @@
-import java.time.LocalDateTime;;
+import java.util.ArrayList;
 
 class Specialist extends Employee {
     String specialization;
+    Employee employee;
+    static ArrayList<Specialist> specialists = new ArrayList<>();
 
-    public Specialist(String name, String surname, LocalDateTime dateOfBirth, EmployeeDepartment department, String specialization) {
-        super(name, surname, dateOfBirth, department);
+    public Specialist(Employee employee, String specialization) {
+        super(employee.getName(), employee.getSurname(), employee.getDateOfBirth(), employee.getDepartment());
         this.specialization = specialization;
+        this.employee = employee;
     }
 
-    public String getSpecialist() {
-        return getInitial();
-    }
-
-    public String getSpecialization() {
-        return specialization;
+   public static void addSpecialist(Specialist specialist) {
+        specialists.add(specialist);
     }
 
     @Override
     public String toString() {
         return "Specialist{" +
                 "specialization='" + specialization + '\'' +
+                ", employee=" + employee +
                 '}';
     }
 }

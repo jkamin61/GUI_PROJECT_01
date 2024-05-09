@@ -23,14 +23,6 @@ class Brigade {
         return employees;
     }
 
-    public void setBrigadesName(String brigadesName) {
-        this.brigadesName = brigadesName;
-    }
-
-    public void setForeman(Foreman foreman) {
-        this.foreman = foreman;
-    }
-
     public void setEmployees(List<Employee> employees) {
         this.employees.addAll(employees);
     }
@@ -42,12 +34,11 @@ class Brigade {
     @Override
     public String toString() {
         return "Brigade{" +
-                "name ='" + brigadesName + '\'' +
-                ", foreman =" + foreman +
-                ", employees =" + employees +
+                "brigadesName='" + brigadesName + '\'' +
+                ", foreman=" + foreman.getName()+" "+foreman.getSurname() +
+                ", employees=" + employees +
                 '}';
     }
-
 
     public void deleteEmployeeFromBrigade(Employee employee) {
         employees.remove(employee);
