@@ -8,7 +8,7 @@ class Contract implements Runnable {
     private static int numberOfContracts = 0;
     private int contractId;
     Map<Integer, Job> jobs;
-    String foreman;
+    Foreman foreman;
     Map<String, String> employeesDepartment;
     Brigade brigade;
     boolean isBrigadeAssigned = false;
@@ -18,7 +18,7 @@ class Contract implements Runnable {
     boolean isStarted = false;
     boolean isFinished = false;
 
-    public Contract(String foreman, Brigade brigade, LocalDateTime dateOfContractCreation) {
+    public Contract(Foreman foreman, Brigade brigade, LocalDateTime dateOfContractCreation) {
         this.contractId = ++numberOfContracts;
         this.jobs = new HashMap<>();
         this.foreman = foreman;
@@ -87,8 +87,8 @@ class Contract implements Runnable {
     public String toString() {
         return "Contract {" +
                 ", contractId=" + contractId +
-                ", jobs number=" + jobs.keySet() +
-                ", foreman='" + foreman + '\'' +
+                ", jobs number=" + jobs +
+                ", foreman='" + foreman.getName()+" "+foreman.getSurname() + '\'' +
                 ", brigade=" + brigade +
                 ", isBrigadeAssigned=" + isBrigadeAssigned +
                 ", dateOfContractCreation=" + dateOfContractCreation +
