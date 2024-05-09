@@ -9,7 +9,7 @@ class Contract implements Runnable {
     private int contractId;
     Map<Integer, Job> jobs;
     Foreman foreman;
-    Map<String, String> employeesDepartment;
+    Map<EmployeeDepartment, Employee> employeesDepartment;
     Brigade brigade;
     boolean isBrigadeAssigned = false;
     LocalDateTime dateOfContractCreation;
@@ -60,7 +60,7 @@ class Contract implements Runnable {
         jobs.get(jobId);
     }
 
-    public void addEmployeeToDepartment(String department, String employee) {
+    public void addEmployeeToDepartment(EmployeeDepartment department, Employee employee) {
         employeesDepartment.put(department, employee);
     }
 

@@ -17,7 +17,7 @@ public class Main {
                 System.out.println(employee);
             }
 
-            Specialist springSpecialist = new Specialist(seniorDeveloper, "Spring framework");
+            Specialist springSpecialist = new Specialist(seniorDeveloper, "Angular.js");
             Specialist.addSpecialist(springSpecialist);
             for (Specialist specialist
                     : Specialist.specialists
@@ -51,8 +51,8 @@ public class Main {
             Job.watchJob(job2);
             job2.join();
 
-            loginPage.addEmployeeToDepartment("Dział A", "Mariusz Nowak");
-            loginPage.addEmployeeToDepartment("Dział B", "Anna Wiśniewska");
+            loginPage.addEmployeeToDepartment(itDepartment, juniorDeveloper);
+            loginPage.addEmployeeToDepartment(itDepartment, seniorDeveloper);
 
             //Zakończenie kontraktu
             loginPage.endContract(loginPage);
