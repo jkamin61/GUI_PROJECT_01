@@ -20,8 +20,11 @@ public class EmployeeDepartment {
         return department;
     }
 
+    @Override
     public String toString() {
-        return "Department: " + departmentName;
+        return "EmployeeDepartment{" +
+                "departmentName='" + departmentName + '\'' +
+                '}';
     }
 }
 
