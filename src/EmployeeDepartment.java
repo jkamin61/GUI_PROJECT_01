@@ -3,6 +3,7 @@ import java.util.ArrayList;
 
 public class EmployeeDepartment {
     private static List<EmployeeDepartment> departments = new ArrayList<>();
+    private static List<Employee> employeesInDepartment = new ArrayList<>();
     private String departmentName;
 
     public EmployeeDepartment(String departmentName) {
@@ -18,6 +19,20 @@ public class EmployeeDepartment {
         EmployeeDepartment department = new EmployeeDepartment(departmentName);
         departments.add(department);
         return department;
+    }
+
+    public static void addEmployeesToDepartment(Employee employee) {
+        employeesInDepartment.add(employee);
+    }
+
+    public static List<Employee> getEmployeesFromDepartment(EmployeeDepartment department) {
+        List<Employee> employees = new ArrayList<>();
+        for (Employee employee : employeesInDepartment) {
+            if (employee.getDepartment().equals(department)) {
+                employees.add(employee);
+            }
+        }
+        return employees;
     }
 
     @Override

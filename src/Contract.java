@@ -60,7 +60,7 @@ class Contract implements Runnable {
         jobs.get(jobId);
     }
 
-    public void addEmployeeToDepartment(EmployeeDepartment department, Employee employee) {
+    public void addEmployeeToContract(EmployeeDepartment department, Employee employee) {
         employeesDepartment.put(department, employee);
     }
 
