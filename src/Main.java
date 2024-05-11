@@ -34,14 +34,13 @@ public class Main {
             System.out.println(itAdmin);
 
             Foreman itForeman = new Foreman(itAdmin);
-
             Brigade frontend = new Brigade("Frontend", itForeman, Employee.getEmployees());
             itForeman.setBrigade(frontend);
 
             System.out.println(frontend);
 
-            Job layout = new Job(TypeOfJob.General, 1000, "Implementation of layout");
-            Job validation = new Job(TypeOfJob.Installation, 2500, "Installation of validation");
+            Job layout = new Job(TypeOfJob.General, 1500, "Implementation of layout");
+            Job validation = new Job(TypeOfJob.Installation, 3000, "Installation of validation");
 
             Contract loginPage = new Contract(itForeman, frontend, LocalDateTime.now());
 
@@ -49,19 +48,13 @@ public class Main {
             loginPage.addJobs(validation);
 
             loginPage.run();
-
-            layout.start();
-            Job.watchJob(layout);
-            layout.join();
-
-            validation.start();
-            Job.watchJob(validation);
-            layout.join();
-
-            loginPage.endContract(loginPage);
+            Contract.endContract(loginPage);
             Contract.getContractStatus(loginPage);
-        } catch (NotUniqueException | InterruptedException e) {
+
+
+        } catch (NotUniqueException e) {
             System.out.println(e.getMessage());
         }
+
     }
 }
