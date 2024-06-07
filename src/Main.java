@@ -1,8 +1,21 @@
+import gui.MainFrame;
+
+import java.awt.*;
 import java.time.LocalDateTime;
 
 public class Main {
     public static void main(String[] args) {
         try {
+            //initialize GUI
+            EventQueue.invokeLater(() -> {
+                try {
+                    MainFrame window = new MainFrame();
+                    window.frame.setVisible(true);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            });
+
             EmployeeDepartment itDepartment = EmployeeDepartment.createDepartment("IT");
 
             Employee juniorDeveloper = new Employee("John", "Taylor", LocalDateTime.of(1990, 2, 10, 0, 0), itDepartment);
