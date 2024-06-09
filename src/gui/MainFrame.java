@@ -18,6 +18,8 @@ public MainFrame() {
 
         TopFrame topFrame = new TopFrame();
         frame.add(topFrame, BorderLayout.NORTH);
+        LeftSideFrame leftSideFrame = new LeftSideFrame();
+        frame.add(leftSideFrame, BorderLayout.WEST);
         }
 
 }
