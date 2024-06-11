@@ -3,10 +3,10 @@ package gui;
 import javax.swing.*;
 import java.awt.*;
 
-public class MainFrame {
+public class S29352 {
 public JFrame frame;
 
-public MainFrame() {
+public S29352() {
     initialize();
 }
 

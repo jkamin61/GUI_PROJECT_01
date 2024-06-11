@@ -1,6 +1,7 @@
 package gui;
 
 import javax.swing.*;
+import java.awt.*;
 
 public class LeftSideFrame extends JPanel {
     JPanel leftFrame;
@@ -21,7 +22,7 @@ public class LeftSideFrame extends JPanel {
 
     public void createLeftPanel() {
         leftFrame = new JPanel();
-        leftFrame.setLayout(new BoxLayout(leftFrame, BoxLayout.Y_AXIS));
+        leftFrame.setLayout(new GridLayout(8, 1));
 
         employeeDepartmentButton = new JButton("Employee Department");
         employeeButton = new JButton("Employee");

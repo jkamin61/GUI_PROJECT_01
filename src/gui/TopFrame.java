@@ -3,28 +3,34 @@ package gui;
 import javax.swing.*;
 import java.awt.*;
 
-public class TopFrame extends JPanel{
-    JPanel topFrame;
-    JButton createButton;
-    JButton editButton;
-    JButton deleteButton;
+public class TopFrame extends JPanel {
 
     public TopFrame() {
         createTopPanel();
-        this.add(topFrame);
     }
 
     public void createTopPanel() {
-        topFrame = new JPanel();
-        topFrame.setLayout(new BorderLayout());
+        JPanel container = new JPanel();
+        container.setLayout(new BorderLayout());
 
-        createButton = new JButton("Create");
-        editButton = new JButton("Edit");
-        deleteButton = new JButton("Delete");
+        JPanel actionPanel = new JPanel();
+        actionPanel.setLayout(new FlowLayout(FlowLayout.LEFT));
 
-        topFrame.add(createButton, BorderLayout.WEST);
-        topFrame.add(editButton, BorderLayout.CENTER);
-        topFrame.add(deleteButton, BorderLayout.EAST);
+        JButton createButton = new JButton("Create");
+        JButton editButton = new JButton("Edit");
+        JButton deleteButton = new JButton("Delete");
+        JButton userButton = new JButton("Hello, $");
+
+        actionPanel.add(createButton);
+        actionPanel.add(editButton);
+        actionPanel.add(deleteButton);
+        actionPanel.add(userButton);
+
+
+
+        container.add(actionPanel);
+
+        add(container);
 
     }
 }
