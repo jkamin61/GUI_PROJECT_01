@@ -13,12 +13,12 @@ public class LeftSideFrame extends JPanel {
     JButton jobButton;
     JButton logoutButton;
 
-    public LeftSideFrame() {
-        createLeftPanel();
+    public LeftSideFrame(S29352 mainApp) {
+        createLeftPanel(mainApp);
         this.add(leftFrame);
     }
 
-    public void createLeftPanel() {
+    public void createLeftPanel(S29352 mainApp) {
         leftFrame = new JPanel();
         leftFrame.setLayout(new GridLayout(8, 1));
 
@@ -39,5 +39,9 @@ public class LeftSideFrame extends JPanel {
         leftFrame.add(contractButton);
         leftFrame.add(jobButton);
         leftFrame.add(logoutButton);
+
+        employeeDepartmentButton.addActionListener(e -> mainApp.showCard("DepartmentView"));
+        employeeButton.addActionListener(e -> mainApp.showCard("EmployeeView"));
+
     }
 }

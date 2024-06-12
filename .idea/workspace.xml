@@ -5,16 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="de9a9683-790e-4bd6-8e59-6ca2c15e464e" name="Changes" comment="-">
-      <change afterPath="$PROJECT_DIR$/src/EmployeeDepartmentView.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/LoginFrame.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/MainFrame.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/EmployeeView.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Employee.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Employee.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/EmployeeDepartment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/EmployeeDepartment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gui/LeftSideFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/LeftSideFrame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gui/S29352.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/S29352.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gui/TopFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/TopFrame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/EmployeeDepartmentView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/EmployeeDepartmentView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/LeftSideFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/LeftSideFrame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/S29352.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/S29352.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/TopFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/TopFrame.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -109,8 +108,8 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-jdk-9f38398b9061-39b83d9b5494-intellij.indexing.shared.core-IU-241.17890.1" />
-        <option value="bundled-js-predefined-1d06a55b98c1-0b3e54e931b4-JavaScript-IU-241.17890.1" />
+        <option value="bundled-jdk-9f38398b9061-39b83d9b5494-intellij.indexing.shared.core-IU-241.15989.150" />
+        <option value="bundled-js-predefined-1d06a55b98c1-91d5c284f522-JavaScript-IU-241.15989.150" />
       </set>
     </attachedChunks>
   </component>
@@ -135,6 +134,7 @@
       <workItem from="1718110442788" duration="155000" />
       <workItem from="1718110778977" duration="6823000" />
       <workItem from="1718200553535" duration="8688000" />
+      <workItem from="1718225074670" duration="2741000" />
     </task>
     <task id="LOCAL-00001" summary="-">
       <created>1682420380662</created>

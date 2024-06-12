@@ -1,7 +1,5 @@
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 public class EmployeeDepartmentView extends JPanel {
     private DefaultListModel<String> listModelDepartment;

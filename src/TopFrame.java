@@ -7,8 +7,8 @@ public class TopFrame extends JPanel {
     public JButton deleteButton;
     public JButton userButton;
 
-    public TopFrame(EmployeeDepartmentView departmentView) {
-        createTopPanel(departmentView);
+    public TopFrame(EmployeeDepartmentView view) {
+        createTopPanel(view);
     }
 
     public void createTopPanel(EmployeeDepartmentView departmentView) {

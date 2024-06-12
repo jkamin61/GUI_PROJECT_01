@@ -4,6 +4,8 @@ import java.awt.*;
 public class S29352 {
     public static JFrame frame;
     public static boolean isLoggedIn = false;
+    private CardLayout cardLayout;
+    private JPanel mainPanel;
 
     public S29352() {
         initialize();
@@ -15,12 +17,31 @@ public class S29352 {
         frame.setSize(800, 600);
         frame.setLayout(new BorderLayout());
 
+        // Create views
         EmployeeDepartmentView departmentView = new EmployeeDepartmentView();
+        EmployeeView employeeView = new EmployeeView();
+
+        // Create main panel with CardLayout
+        cardLayout = new CardLayout();
+        mainPanel = new JPanel(cardLayout);
+        mainPanel.add(departmentView, "DepartmentView");
+        mainPanel.add(employeeView, "EmployeeView");
 
         TopFrame topFrame = new TopFrame(departmentView);
+        LeftSideFrame leftSideFrame = new LeftSideFrame(this);
+
         frame.add(topFrame, BorderLayout.NORTH);
-        LeftSideFrame leftSideFrame = new LeftSideFrame();
         frame.add(leftSideFrame, BorderLayout.WEST);
-        frame.add(departmentView, BorderLayout.CENTER);
+        frame.add(mainPanel, BorderLayout.CENTER);
+
+        frame.setVisible(true);
+    }
+
+    public void showCard(String cardName) {
+        cardLayout.show(mainPanel, cardName);
+    }
+
+    public static void main(String[] args) {
+        SwingUtilities.invokeLater(S29352::new);
     }
 }

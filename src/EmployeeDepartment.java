@@ -43,6 +43,17 @@ public class EmployeeDepartment {
         this.departmentName = departmentName;
     }
 
+    public static EmployeeDepartment getDepartmentByName(String departmentName) {
+        for (EmployeeDepartment department : departments) {
+            if (department.departmentName.equals(departmentName)) {
+                return department;
+            } else {
+                throw new IllegalArgumentException("Department " + departmentName + " does not exist!");
+            }
+        }
+        return null;
+    }
+
     @Override
     public String toString() {
         return "EmployeeDepartment{" +

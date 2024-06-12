@@ -69,4 +69,12 @@ class Employee implements Comparable<Employee> {
         if (compareTo != 0) return compareTo;
         return dateOfBirth.compareTo(p.getDateOfBirth());
     }
+
+    public void setEmployeeName(String newName) {
+        this.name = newName;
+    }
+
+    public void setEmployeeSurname(String newSurname) {
+        this.surname = newSurname;
+    }
 }
