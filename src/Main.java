@@ -1,5 +1,3 @@
-import gui.S29352;
-
 import java.awt.*;
 
 public class Main {

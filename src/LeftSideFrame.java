@@ -1,5 +1,3 @@
-package gui;
-
 import javax.swing.*;
 import java.awt.*;
 
@@ -42,5 +40,4 @@ public class LeftSideFrame extends JPanel {
         leftFrame.add(jobButton);
         leftFrame.add(logoutButton);
     }
-
 }
