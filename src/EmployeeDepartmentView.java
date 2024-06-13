@@ -13,26 +13,16 @@ public class EmployeeDepartmentView extends JPanel {
         listData = new JList<>(listModelDepartment);
         listData.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         scrollPane = new JScrollPane(listData);
-
         add(scrollPane, BorderLayout.CENTER);
-
-        JPanel inputPanel = new JPanel(new FlowLayout());
-        departmentNameField = new JTextField(15);
-
-        inputPanel.add(new JLabel("Department Name:"));
-        inputPanel.add(departmentNameField);
-
-        add(inputPanel, BorderLayout.SOUTH);
 
         loadDepartments();
     }
 
     public void createDepartment() {
-        String name = departmentNameField.getText();
+        String departmentName = JOptionPane.showInputDialog(this, "Enter Department Name:");
         try {
-            EmployeeDepartment department = EmployeeDepartment.createDepartment(name);
+            EmployeeDepartment department = EmployeeDepartment.createDepartment(departmentName);
             listModelDepartment.addElement(department.toString());
-            departmentNameField.setText("");
         } catch (NotUniqueException ex) {
             JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
@@ -41,12 +31,11 @@ public class EmployeeDepartmentView extends JPanel {
     public void editDepartment() {
         int selectedIndex = listData.getSelectedIndex();
         if (selectedIndex != -1) {
-            String newName = departmentNameField.getText();
-            if (!newName.isEmpty()) {
+            String newDepartmentName = JOptionPane.showInputDialog(this, "Enter new department name:");
+            if (!newDepartmentName.isEmpty()) {
                 EmployeeDepartment department = EmployeeDepartment.getDepartments().get(selectedIndex);
-                department.setDepartmentName(newName);
+                department.setDepartmentName(newDepartmentName);
                 listModelDepartment.set(selectedIndex, department.toString());
-                departmentNameField.setText("");
             }
         }
     }
@@ -57,7 +46,6 @@ public class EmployeeDepartmentView extends JPanel {
             EmployeeDepartment department = EmployeeDepartment.getDepartments().get(selectedIndex);
             EmployeeDepartment.getDepartments().remove(department);
             listModelDepartment.remove(selectedIndex);
-            departmentNameField.setText("");
         }
     }
 

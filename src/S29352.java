@@ -27,7 +27,7 @@ public class S29352 {
         mainPanel.add(departmentView, "DepartmentView");
         mainPanel.add(employeeView, "EmployeeView");
 
-        TopFrame topFrame = new TopFrame(departmentView);
+        TopFrame topFrame = new TopFrame(this, departmentView, employeeView);
         LeftSideFrame leftSideFrame = new LeftSideFrame(this);
 
         frame.add(topFrame, BorderLayout.NORTH);
@@ -39,9 +39,5 @@ public class S29352 {
 
     public void showCard(String cardName) {
         cardLayout.show(mainPanel, cardName);
-    }
-
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(S29352::new);
     }
 }
