@@ -10,15 +10,19 @@ public class EmployeeDepartment {
         this.departmentName = departmentName;
     }
 
-    public static EmployeeDepartment createDepartment(String departmentName) throws NotUniqueException {
+    public static EmployeeDepartment createDepartment(String departmentName) throws NotUniqueException, IllegalArgumentException {
         for (EmployeeDepartment department : departments) {
             if (department.departmentName.equals(departmentName)) {
                 throw new NotUniqueException("Department " + departmentName + " already exists!");
             }
         }
-        EmployeeDepartment department = new EmployeeDepartment(departmentName);
-        departments.add(department);
-        return department;
+        if (departmentName == null || departmentName.isEmpty()) {
+            throw new IllegalArgumentException("Department name cannot be empty!");
+        } else {
+            EmployeeDepartment department = new EmployeeDepartment(departmentName);
+            departments.add(department);
+            return department;
+        }
     }
 
     public static void addEmployeesToDepartment(Employee employee) {
@@ -59,6 +63,10 @@ public class EmployeeDepartment {
         return "EmployeeDepartment{" +
                 "departmentName='" + departmentName + '\'' +
                 '}';
+    }
+
+    public String getDepartmentName() {
+        return departmentName;
     }
 }
 

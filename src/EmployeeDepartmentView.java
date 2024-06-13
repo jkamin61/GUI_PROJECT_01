@@ -11,7 +11,7 @@ public class EmployeeDepartmentView extends JPanel {
         setLayout(new BorderLayout());
         listModelDepartment = new DefaultListModel<>();
         listData = new JList<>(listModelDepartment);
-        listData.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        listData.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
         scrollPane = new JScrollPane(listData);
         add(scrollPane, BorderLayout.CENTER);
 
@@ -23,7 +23,7 @@ public class EmployeeDepartmentView extends JPanel {
         try {
             EmployeeDepartment department = EmployeeDepartment.createDepartment(departmentName);
             listModelDepartment.addElement(department.toString());
-        } catch (NotUniqueException ex) {
+        } catch (NotUniqueException | IllegalArgumentException ex) {
             JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
@@ -41,11 +41,13 @@ public class EmployeeDepartmentView extends JPanel {
     }
 
     public void deleteDepartment() {
-        int selectedIndex = listData.getSelectedIndex();
-        if (selectedIndex != -1) {
-            EmployeeDepartment department = EmployeeDepartment.getDepartments().get(selectedIndex);
-            EmployeeDepartment.getDepartments().remove(department);
-            listModelDepartment.remove(selectedIndex);
+        int[] selectedIndices = listData.getSelectedIndices();
+        if (selectedIndices.length > 0) {
+            for (int i = selectedIndices.length - 1; i >= 0; i--) {
+                EmployeeDepartment department = EmployeeDepartment.getDepartments().get(selectedIndices[i]);
+                EmployeeDepartment.getDepartments().remove(department);
+                listModelDepartment.remove(selectedIndices[i]);
+            }
         }
     }
 
@@ -54,6 +56,8 @@ public class EmployeeDepartmentView extends JPanel {
         for (EmployeeDepartment department : EmployeeDepartment.getDepartments()) {
             listModelDepartment.addElement(department.toString());
         }
+        EmployeeDepartment IT = new EmployeeDepartment("IT");
+        listModelDepartment.addElement(IT.toString());
     }
 
     public JTextField getDepartmentNameField() {

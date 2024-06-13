@@ -1,7 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
 
-public class LeftSideFrame extends JPanel {
+public class LeftFrame extends JPanel {
     JPanel leftFrame;
 
     JButton employeeDepartmentButton;
@@ -13,7 +13,7 @@ public class LeftSideFrame extends JPanel {
     JButton jobButton;
     JButton logoutButton;
 
-    public LeftSideFrame(S29352 mainApp) {
+    public LeftFrame(S29352 mainApp) {
         createLeftPanel(mainApp);
         this.add(leftFrame);
     }
@@ -40,8 +40,29 @@ public class LeftSideFrame extends JPanel {
         leftFrame.add(jobButton);
         leftFrame.add(logoutButton);
 
-        employeeDepartmentButton.addActionListener(e -> mainApp.showCard("DepartmentView"));
-        employeeButton.addActionListener(e -> mainApp.showCard("EmployeeView"));
+        logoutButton.setBackground(Color.LIGHT_GRAY);
+        logoutButton.setForeground(Color.BLACK);
+
+        employeeDepartmentButton.addActionListener(e -> {
+            mainApp.showCard("DepartmentView");
+            TopFrame.updateActions("DepartmentView");
+        });
+        employeeButton.addActionListener(e -> {
+            mainApp.showCard("EmployeeView");
+            TopFrame.updateActions("EmployeeView");
+        });
+        userButton.addActionListener(e -> {
+            mainApp.showCard("UserView");
+            TopFrame.updateActions("UserView");
+        });
+        foremanButton.addActionListener(e -> {
+            mainApp.showCard("ForemanView");
+            TopFrame.updateActions("ForemanView");
+        });
+        brigadeButton.addActionListener(e -> {
+            mainApp.showCard("BrigadeView");
+            TopFrame.updateActions("BrigadeView");
+        });
 
     }
 }

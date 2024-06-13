@@ -3,17 +3,25 @@ import java.awt.*;
 import java.awt.event.ActionListener;
 
 public class TopFrame extends JPanel {
-    public JButton createButton;
-    public JButton editButton;
-    public JButton deleteButton;
+    public static JButton createButton;
+    public static JButton editButton;
+    public static JButton deleteButton;
     public JButton userButton;
+    public static JButton employeesButton;
 
-    private EmployeeDepartmentView departmentView;
-    private EmployeeView employeeView;
+    private static EmployeeDepartmentView departmentView;
+    private static EmployeeView employeeView;
+    private static UserView userView;
+    private static ForemanView foremanView;
+    private static BrigadeView brigadeView;
 
-    public TopFrame(S29352 mainApp, EmployeeDepartmentView departmentView, EmployeeView employeeView) {
+    public TopFrame(S29352 mainApp, EmployeeDepartmentView departmentView, EmployeeView employeeView, UserView userView, ForemanView foremanView, BrigadeView brigadeView) {
         this.departmentView = departmentView;
         this.employeeView = employeeView;
+        this.userView = userView;
+        this.foremanView = foremanView;
+        this.brigadeView = brigadeView;
+
         createTopPanel();
         updateActions("DepartmentView");
     }
@@ -30,12 +38,16 @@ public class TopFrame extends JPanel {
         createButton = new JButton("Create");
         editButton = new JButton("Edit");
         deleteButton = new JButton("Delete");
-        userButton = new JButton("Hello, USER");
+        User user = User.getUsers().get(0);
+        userButton = new JButton("Hello, "+user.getInitial());
+        employeesButton = new JButton("Employees");
 
         actionPanel.add(createButton);
         actionPanel.add(editButton);
         actionPanel.add(deleteButton);
         userPanel.add(userButton);
+        userPanel.add(employeesButton);
+        employeesButton.setVisible(false);
 
         JPanel combinedPanel = new JPanel();
         combinedPanel.setLayout(new BoxLayout(combinedPanel, BoxLayout.X_AXIS));
@@ -48,7 +60,7 @@ public class TopFrame extends JPanel {
         add(container);
     }
 
-    public void updateActions(String cardName) {
+    public static void updateActions(String cardName) {
         for (ActionListener al : createButton.getActionListeners()) {
             createButton.removeActionListener(al);
         }
@@ -59,14 +71,44 @@ public class TopFrame extends JPanel {
             deleteButton.removeActionListener(al);
         }
 
-        if ("DepartmentView".equals(cardName)) {
+        if (cardName.equals("DepartmentView")) {
+            createButton.setVisible(true);
             createButton.addActionListener(e -> departmentView.createDepartment());
+            editButton.setText("Edit");
             editButton.addActionListener(e -> departmentView.editDepartment());
+            deleteButton.setVisible(true);
             deleteButton.addActionListener(e -> departmentView.deleteDepartment());
-        } else if ("EmployeeView".equals(cardName)) {
+            employeesButton.setVisible(true);
+        } else if (cardName.equals("EmployeeView")) {
+            createButton.setVisible(true);
             createButton.addActionListener(e -> employeeView.createEmployee());
+            editButton.setText("Edit");
             editButton.addActionListener(e -> employeeView.editEmployee());
-//            deleteButton.addActionListener(e -> employeeView.deleteEmployee());
+            deleteButton.setVisible(true);
+            deleteButton.addActionListener(e -> employeeView.deleteEmployee());
+            employeesButton.setVisible(false);
+        } else if (cardName.equals("UserView")) {
+            createButton.setVisible(false);
+            editButton.setText("Change password");
+            editButton.addActionListener(e -> userView.changeUserPassword());
+            deleteButton.setVisible(false);
+            employeesButton.setVisible(false);
+        } else if (cardName.equals("ForemanView")) {
+            createButton.setVisible(true);
+            createButton.addActionListener(e -> foremanView.addForeman());
+            editButton.setText("Edit");
+            editButton.addActionListener(e -> foremanView.editForeman());
+            deleteButton.setVisible(true);
+            deleteButton.addActionListener(e -> foremanView.deleteForeman());
+            employeesButton.setVisible(false);
+        } else if (cardName.equals("BrigadeView")) {
+            createButton.setVisible(true);
+            createButton.addActionListener(e -> brigadeView.addBrigade());
+            editButton.setText("Edit");
+//            editButton.addActionListener(e -> brigadeView.editBrigade());
+            deleteButton.setVisible(true);
+//            deleteButton.addActionListener(e -> brigadeView.deleteBrigade());
+            employeesButton.setVisible(false);
         }
     }
 }

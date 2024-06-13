@@ -20,18 +20,24 @@ public class S29352 {
         // Create views
         EmployeeDepartmentView departmentView = new EmployeeDepartmentView();
         EmployeeView employeeView = new EmployeeView();
+        UserView userView = new UserView();
+        ForemanView foremanView = new ForemanView();
+        BrigadeView brigadeView = new BrigadeView();
 
         // Create main panel with CardLayout
         cardLayout = new CardLayout();
         mainPanel = new JPanel(cardLayout);
         mainPanel.add(departmentView, "DepartmentView");
         mainPanel.add(employeeView, "EmployeeView");
+        mainPanel.add(userView, "UserView");
+        mainPanel.add(foremanView, "ForemanView");
+        mainPanel.add(brigadeView, "BrigadeView");
 
-        TopFrame topFrame = new TopFrame(this, departmentView, employeeView);
-        LeftSideFrame leftSideFrame = new LeftSideFrame(this);
+        TopFrame topFrame = new TopFrame(this, departmentView, employeeView, userView, foremanView, brigadeView);
+        LeftFrame leftFrame = new LeftFrame(this);
 
         frame.add(topFrame, BorderLayout.NORTH);
-        frame.add(leftSideFrame, BorderLayout.WEST);
+        frame.add(leftFrame, BorderLayout.WEST);
         frame.add(mainPanel, BorderLayout.CENTER);
 
         frame.setVisible(true);
