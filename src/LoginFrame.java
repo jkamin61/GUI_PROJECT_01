@@ -5,6 +5,7 @@ public class LoginFrame {
     private JDialog dialog;
     private JTextField loginField;
     private JPasswordField passwordField;
+    public static String initialPassword = "admin";
 
     public LoginFrame() {
         createLoginDialog();
@@ -48,7 +49,7 @@ public class LoginFrame {
     }
 
     private boolean validateCredentials(String username, String password) {
-        return (username.equals("admin") && password.equals("admin")) ||
+        return (username.equals("admin") && password.equals(initialPassword)) ||
                 (username.equals("user") && password.equals("user"));
     }
 

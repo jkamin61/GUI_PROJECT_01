@@ -1,42 +1,31 @@
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 
 public class UserView  extends JPanel {
     private DefaultListModel<String> listModelUser;
     private JList<String> listData;
     private JScrollPane scrollPane;
+    private DefaultTableModel tableModelUser;
+    private JTable tableData;
+
 
     public UserView() {
         setLayout(new BorderLayout());
-        listModelUser = new DefaultListModel<>();
-        listData = new JList<>(listModelUser);
-        listData.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-        scrollPane = new JScrollPane(listData);
+        tableModelUser = new DefaultTableModel(new Object[]{"Password"}, 0);
+        tableData = new JTable(tableModelUser);
+        tableData.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
+        scrollPane = new JScrollPane(tableData);
         add(scrollPane, BorderLayout.CENTER);
-
-        loadUsers();
+        tableModelUser.setRowCount(0);
+        tableModelUser.addRow(new Object[]{LoginFrame.initialPassword});
     }
 
-    public void loadUsers() {
-        listModelUser.clear();
-        for (User user : User.getUsers()) {
-            listModelUser.addElement(user.toString());
-        }
-    }
-
-    public void changeUserPassword() {
-        int selectedIndex = listData.getSelectedIndex();
-        if (selectedIndex != -1) {
-            String newPassword = JOptionPane.showInputDialog(this, "Enter new password:");
-            if (newPassword != null && !newPassword.trim().isEmpty()) {
-                User user = User.getUsers().get(selectedIndex);
-                user.setPassword(newPassword);
-                listModelUser.set(selectedIndex, user.toString());
-            } else {
-                JOptionPane.showMessageDialog(this, "Password cannot be empty.", "Error", JOptionPane.ERROR_MESSAGE);
-            }
-        } else {
-            JOptionPane.showMessageDialog(this, "No user selected.", "Error", JOptionPane.ERROR_MESSAGE);
+    public void changePassword() {
+        String newPassword = JOptionPane.showInputDialog(this, "Enter new password:");
+        if (newPassword != null && !newPassword.isEmpty()) {
+            LoginFrame.initialPassword = newPassword;
+            tableModelUser.setValueAt(newPassword, 0, 0);
         }
     }
 

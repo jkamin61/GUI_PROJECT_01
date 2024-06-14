@@ -66,10 +66,6 @@ public class EmployeeDepartmentView extends JPanel {
 
     private void loadDepartments() throws NotUniqueException {
         tableModelDepartment.setRowCount(0);
-        if (employeeDepartment == null) {
-            employeeDepartment = new EmployeeDepartment("IT");
-            employeeDepartment.createDepartment("IT");
-        }
         for (EmployeeDepartment department : employeeDepartment.getDepartments()) {
             tableModelDepartment.addRow(new Object[]{department.getDepartmentName()});
         }

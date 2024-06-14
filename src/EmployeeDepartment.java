@@ -13,7 +13,7 @@ public class EmployeeDepartment {
 
     }
 
-    public EmployeeDepartment createDepartment(String departmentName) throws NotUniqueException, IllegalArgumentException {
+    public static EmployeeDepartment createDepartment(String departmentName) throws NotUniqueException, IllegalArgumentException {
         for (EmployeeDepartment department : departments) {
             if (department.departmentName.equals(departmentName)) {
                 throw new NotUniqueException("Department " + departmentName + " already exists!");
@@ -23,13 +23,14 @@ public class EmployeeDepartment {
             throw new IllegalArgumentException("Department name cannot be empty!");
         } else {
             EmployeeDepartment department = new EmployeeDepartment(departmentName);
-            this.departmentName = departmentName;
+            EmployeeDepartment employeeDepartment = new EmployeeDepartment(departmentName);
             departments.add(department);
             return department;
         }
     }
 
     public void addEmployeesToDepartment(Employee employee) {
+        System.out.println("Adding employee to department1");
         employeesInDepartment.add(employee);
     }
 

@@ -13,7 +13,7 @@ public class EmployeeView extends JPanel {
 
     public EmployeeView() {
         setLayout(new BorderLayout());
-        loadEmployees();
+//        loadEmployees();
         employeeTableModel = new EmployeeTableModel(Employee.getEmployees());
         employeeTable = new JTable(employeeTableModel);
         scrollPane = new JScrollPane(employeeTable);
