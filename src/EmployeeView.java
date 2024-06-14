@@ -20,6 +20,7 @@ public class EmployeeView extends JPanel {
         add(scrollPane, BorderLayout.CENTER);
 
         departmentComboBox = new JComboBox<>();
+        updateDepartmentComboBox();
         for (EmployeeDepartment department : EmployeeDepartment.getDepartments()) {
             departmentComboBox.addItem(department.getDepartmentName());
         }
@@ -33,9 +34,16 @@ public class EmployeeView extends JPanel {
         add(panel, BorderLayout.NORTH);
     }
 
+    private void updateDepartmentComboBox() {
+        departmentComboBox.removeAllItems();
+        for (EmployeeDepartment department : EmployeeDepartment.getDepartments()) {
+            departmentComboBox.addItem(department.getDepartmentName());
+        }
+    }
+
     public void loadEmployees() {
         for (Employee employee : Employee.getEmployees()) {
-            employeeTableModel.addEmployee(employee);
+            employeeTableModel.addEmployee();
         }
     }
 
@@ -54,7 +62,7 @@ public class EmployeeView extends JPanel {
         myPanel.add(dateOfBirthField);
         myPanel.add(new JLabel("Select Department:"));
         myPanel.add(departmentComboBox);
-
+        updateDepartmentComboBox();
         int result = JOptionPane.showConfirmDialog(null, myPanel,
                 "Please Enter Employee Details", JOptionPane.OK_CANCEL_OPTION);
         if (result == JOptionPane.OK_OPTION) {
@@ -64,7 +72,7 @@ public class EmployeeView extends JPanel {
             String selectedDepartmentName = (String) departmentComboBox.getSelectedItem();
 
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
-            LocalDate date = null;
+            LocalDate date;
             try {
                 date = LocalDate.parse(dateOfBirth, formatter);
             } catch (DateTimeParseException e) {
@@ -72,18 +80,14 @@ public class EmployeeView extends JPanel {
                 return;
             }
             LocalDateTime dateTime = date.atStartOfDay();
-
             try {
-                // Pobierz istniejący departament na podstawie wybranej nazwy
                 EmployeeDepartment department = EmployeeDepartment.getDepartmentByName(selectedDepartmentName);
                 if (department == null) {
                     JOptionPane.showMessageDialog(this, "Department " + selectedDepartmentName + " does not exist!");
                     return;
                 }
-
-                // Utwórz nowego pracownika i dodaj go do listy pracowników
                 Employee employee = new Employee(name, surname, dateTime, department);
-                employeeTableModel.addEmployee(employee);
+                employeeTableModel.addEmployee();
             } catch (IllegalArgumentException ex) {
                 JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
             }
@@ -92,11 +96,13 @@ public class EmployeeView extends JPanel {
 
 
     public void deleteEmployee() {
-        int selectedRow = employeeTable.getSelectedRow();
-        if (selectedRow != -1) {
-            Employee employee = Employee.getEmployees().get(selectedRow);
-            Employee.getEmployees().remove(employee);
-            employeeTableModel.fireTableRowsDeleted(selectedRow, selectedRow);
+        int[] selectedRow = employeeTable.getSelectedRows();
+        if (selectedRow.length > 0) {
+            for (int i = selectedRow.length - 1; i >= 0; i--) {
+                Employee employee = Employee.getEmployees().get(selectedRow[i]);
+                Employee.getEmployees().remove(employee);
+                employeeTableModel.fireTableRowsDeleted(selectedRow[i], selectedRow[i]);
+            }
         }
     }
 
