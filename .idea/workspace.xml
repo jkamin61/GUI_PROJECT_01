@@ -5,16 +5,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="de9a9683-790e-4bd6-8e59-6ca2c15e464e" name="Changes" comment="-">
-      <change afterPath="$PROJECT_DIR$/src/EmployeeDepartmentView.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/LoginFrame.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/MainFrame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/ContractView.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/JobView.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/EmployeeDepartment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/EmployeeDepartment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gui/LeftSideFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/LeftSideFrame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gui/S29352.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/S29352.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gui/TopFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/TopFrame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/BrigadeView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/BrigadeView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Foreman.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Foreman.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ForemanView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ForemanView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/LeftFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/LeftFrame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/LoginFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/LoginFrame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/S29352.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/S29352.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/TopFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/TopFrame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/UserView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/UserView.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -57,25 +58,28 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
-    &quot;Java Scratch.S29352.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;dart.analysis.tool.window.visible&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.Main.executor": "Run",
+    "Java Scratch.S29352.executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "dart.analysis.tool.window.visible": "false",
+    "git-widget-placeholder": "dev",
+    "kotlin-language-version-configured": "true",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0",
+    "settings.editor.selected.configurable": "preferences.lookFeel",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RunManager" selected="Application.Main">
     <configuration name="Main (1)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Main" />
@@ -135,6 +139,10 @@
       <workItem from="1718110442788" duration="155000" />
       <workItem from="1718110778977" duration="6823000" />
       <workItem from="1718200553535" duration="8688000" />
+      <workItem from="1718225074670" duration="2741000" />
+      <workItem from="1718285709119" duration="23404000" />
+      <workItem from="1718354651092" duration="14004000" />
+      <workItem from="1718383754259" duration="11961000" />
     </task>
     <task id="LOCAL-00001" summary="-">
       <created>1682420380662</created>
@@ -158,7 +166,39 @@
       <option name="project" value="LOCAL" />
       <updated>1718145875927</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="-">
+      <option name="closed" value="true" />
+      <created>1718317611437</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1718317611437</updated>
+    </task>
+    <task id="LOCAL-00005" summary="-">
+      <option name="closed" value="true" />
+      <created>1718386237812</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1718386237812</updated>
+    </task>
+    <task id="LOCAL-00006" summary="-">
+      <option name="closed" value="true" />
+      <created>1718389367178</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1718389367178</updated>
+    </task>
+    <task id="LOCAL-00007" summary="-">
+      <option name="closed" value="true" />
+      <created>1718391708234</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1718391708234</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

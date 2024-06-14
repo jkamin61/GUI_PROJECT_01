@@ -12,11 +12,8 @@ class Employee implements Comparable<Employee> {
         this.surname = surname;
         this.dateOfBirth = dateOfBirth;
         this.employeeDepartment = employeeDepartment;
-
-    }
-
-    public static void addEmployee(Employee employee) {
-        employees.add(employee);
+        employeeDepartment.addEmployeesToDepartment(this);
+        employees.add(this);
     }
 
     @Override
@@ -68,5 +65,21 @@ class Employee implements Comparable<Employee> {
         compareTo = surname.compareTo(p.getSurname());
         if (compareTo != 0) return compareTo;
         return dateOfBirth.compareTo(p.getDateOfBirth());
+    }
+
+    public void setEmployeeName(String newName) {
+        this.name = newName;
+    }
+
+    public void setEmployeeSurname(String newSurname) {
+        this.surname = newSurname;
+    }
+
+    public void setDateOfBirth(LocalDateTime dateTime) {
+        this.dateOfBirth = dateTime;
+    }
+
+    public void setEmployeeDepartment(EmployeeDepartment department) {
+        this.employeeDepartment = department;
     }
 }
