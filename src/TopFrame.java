@@ -38,8 +38,8 @@ public class TopFrame extends JPanel {
         createButton = new JButton("Create");
         editButton = new JButton("Edit");
         deleteButton = new JButton("Delete");
-        User user = User.getUsers().get(0);
-        userButton = new JButton("Hello, "+user.getInitial());
+        //TODO: add initial display after login
+        userButton = new JButton("Hello, ");
         employeesButton = new JButton("Employees");
 
         actionPanel.add(createButton);
@@ -79,9 +79,12 @@ public class TopFrame extends JPanel {
             deleteButton.setVisible(true);
             deleteButton.addActionListener(e -> departmentView.deleteDepartment());
             employeesButton.setVisible(true);
+            employeesButton.addActionListener(e -> departmentView.showEmployees());
         } else if (cardName.equals("EmployeeView")) {
             createButton.setVisible(true);
-            createButton.addActionListener(e -> employeeView.createEmployee());
+            createButton.addActionListener(e -> {
+                employeeView.createEmployee();
+            });
             editButton.setText("Edit");
             editButton.addActionListener(e -> employeeView.editEmployee());
             deleteButton.setVisible(true);

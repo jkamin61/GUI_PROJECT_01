@@ -1,44 +1,48 @@
 import javax.swing.*;
+import java.awt.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
 public class EmployeeView extends JPanel {
-    private DefaultListModel<String> listModelEmployee;
-    private JList<String> listData;
+    private EmployeeTableModel employeeTableModel;
+    private JTable employeeTable;
     private JScrollPane scrollPane;
-
+    private JComboBox<String> departmentComboBox;
 
     public EmployeeView() {
-        setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
-        listModelEmployee = new DefaultListModel<>();
-        listData = new JList<>(listModelEmployee);
-        listData.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-        scrollPane = new JScrollPane(listData);
-
-        add(scrollPane);
-
+        setLayout(new BorderLayout());
         loadEmployees();
+        employeeTableModel = new EmployeeTableModel(Employee.getEmployees());
+        employeeTable = new JTable(employeeTableModel);
+        scrollPane = new JScrollPane(employeeTable);
+        add(scrollPane, BorderLayout.CENTER);
+
+        departmentComboBox = new JComboBox<>();
+        for (EmployeeDepartment department : EmployeeDepartment.getDepartments()) {
+            departmentComboBox.addItem(department.getDepartmentName());
+        }
+
+        departmentComboBox.addActionListener(e -> {
+
+        });
+
+        JPanel panel = new JPanel();
+        panel.add(new JLabel("Select Department:"));
+        add(panel, BorderLayout.NORTH);
     }
 
     public void loadEmployees() {
-        listModelEmployee.clear();
         for (Employee employee : Employee.getEmployees()) {
-            listModelEmployee.addElement(employee.toString());
+            employeeTableModel.addEmployee(employee);
         }
-        EmployeeDepartment IT = EmployeeDepartment.getDepartmentByName("IT");
-        Employee employee1 = new Employee("John", "Doe", LocalDateTime.of(1999, 10, 20, 0, 0), IT);
-        Employee employee2 = new Employee("Jane", "Doe", LocalDateTime.of(1999, 10, 20, 0, 0), IT);
-        listModelEmployee.addElement(employee1.toString());
-        listModelEmployee.addElement(employee2.toString());
     }
 
     public void createEmployee() {
         JTextField nameField = new JTextField(5);
         JTextField surnameField = new JTextField(5);
         JTextField dateOfBirthField = new JTextField(5);
-        JTextField departmentField = new JTextField(5);
 
         JPanel myPanel = new JPanel();
         myPanel.setLayout(new BoxLayout(myPanel, BoxLayout.Y_AXIS));
@@ -48,8 +52,8 @@ public class EmployeeView extends JPanel {
         myPanel.add(surnameField);
         myPanel.add(new JLabel("Enter Employee Date of Birth (dd.MM.yyyy):"));
         myPanel.add(dateOfBirthField);
-        myPanel.add(new JLabel("Enter Employee Department:"));
-        myPanel.add(departmentField);
+        myPanel.add(new JLabel("Select Department:"));
+        myPanel.add(departmentComboBox);
 
         int result = JOptionPane.showConfirmDialog(null, myPanel,
                 "Please Enter Employee Details", JOptionPane.OK_CANCEL_OPTION);
@@ -57,7 +61,7 @@ public class EmployeeView extends JPanel {
             String name = nameField.getText();
             String surname = surnameField.getText();
             String dateOfBirth = dateOfBirthField.getText();
-            String employeeDepartment = departmentField.getText();
+            String selectedDepartmentName = (String) departmentComboBox.getSelectedItem();
 
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
             LocalDate date = null;
@@ -67,33 +71,39 @@ public class EmployeeView extends JPanel {
                 JOptionPane.showMessageDialog(this, "Invalid date format. Please enter the date in the format dd.MM.yyyy");
                 return;
             }
-
             LocalDateTime dateTime = date.atStartOfDay();
-            EmployeeDepartment department = EmployeeDepartment.getDepartmentByName(employeeDepartment);
-            if (department == null) {
-                JOptionPane.showMessageDialog(this, "Department " + employeeDepartment + " does not exist!");
-                return;
+
+            try {
+                // Pobierz istniejący departament na podstawie wybranej nazwy
+                EmployeeDepartment department = EmployeeDepartment.getDepartmentByName(selectedDepartmentName);
+                if (department == null) {
+                    JOptionPane.showMessageDialog(this, "Department " + selectedDepartmentName + " does not exist!");
+                    return;
+                }
+
+                // Utwórz nowego pracownika i dodaj go do listy pracowników
+                Employee employee = new Employee(name, surname, dateTime, department);
+                employeeTableModel.addEmployee(employee);
+            } catch (IllegalArgumentException ex) {
+                JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
             }
-            Employee employee = new Employee(name, surname, dateTime, department);
-            listModelEmployee.addElement(employee.toString());
         }
     }
 
+
     public void deleteEmployee() {
-        int[] selectedIndices = listData.getSelectedIndices();
-        if (selectedIndices.length > 0) {
-            for (int i = selectedIndices.length - 1; i >= 0; i--) {
-                Employee employee = Employee.getEmployees().get(selectedIndices[i]);
-                Employee.getEmployees().remove(employee);
-                listModelEmployee.remove(selectedIndices[i]);
-            }
+        int selectedRow = employeeTable.getSelectedRow();
+        if (selectedRow != -1) {
+            Employee employee = Employee.getEmployees().get(selectedRow);
+            Employee.getEmployees().remove(employee);
+            employeeTableModel.fireTableRowsDeleted(selectedRow, selectedRow);
         }
     }
 
     public void editEmployee() {
-        int selectedIndex = listData.getSelectedIndex();
-        if (selectedIndex != -1) {
-            Employee employee = Employee.getEmployees().get(selectedIndex);
+        int selectedRow = employeeTable.getSelectedRow();
+        if (selectedRow != -1) {
+            Employee employee = Employee.getEmployees().get(selectedRow);
             JTextField nameField = new JTextField(employee.getName());
             JTextField surnameField = new JTextField(employee.getSurname());
             JTextField dateOfBirthField = new JTextField(employee.getDateOfBirth().format(DateTimeFormatter.ofPattern("dd.MM.yyyy")));
@@ -128,13 +138,17 @@ public class EmployeeView extends JPanel {
                 }
 
                 LocalDateTime dateTime = date.atStartOfDay();
-                EmployeeDepartment department = EmployeeDepartment.getDepartmentByName(employeeDepartment);
-
+                EmployeeDepartment department = new EmployeeDepartment(employeeDepartment);
+                department = department.getDepartmentByName(employeeDepartment);
+                if (department == null) {
+                    JOptionPane.showMessageDialog(this, "Department " + employeeDepartment + " does not exist!");
+                    return;
+                }
                 employee.setName(name);
                 employee.setSurname(surname);
                 employee.setDateOfBirth(dateTime);
                 employee.setEmployeeDepartment(department);
-                listModelEmployee.set(selectedIndex, employee.toString());
+                employeeTableModel.fireTableRowsUpdated(selectedRow, selectedRow);
             }
         }
     }

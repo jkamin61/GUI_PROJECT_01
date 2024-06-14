@@ -20,9 +20,6 @@ public class ForemanView extends JPanel {
 
     public void loadForemans() {
         listModelForeman.clear();
-        User user = User.getUsers().get(0);
-        Foreman foreman1 = new Foreman(user);
-        listModelForeman.addElement(foreman1.toString());
         for (Foreman foreman : Foreman.getForemans()) {
             listModelForeman.addElement(foreman.toString());
         }

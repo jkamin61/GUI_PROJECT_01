@@ -1,4 +1,5 @@
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
 import java.awt.*;
 
 public class LeftFrame extends JPanel {
@@ -20,7 +21,7 @@ public class LeftFrame extends JPanel {
 
     public void createLeftPanel(S29352 mainApp) {
         leftFrame = new JPanel();
-        leftFrame.setLayout(new GridLayout(8, 1));
+        leftFrame.setLayout(new GridLayout(8, 1, 0, 15));
 
         employeeDepartmentButton = new JButton("Employee Department");
         employeeButton = new JButton("Employee");
@@ -30,6 +31,16 @@ public class LeftFrame extends JPanel {
         contractButton = new JButton("Contract");
         jobButton = new JButton("Job");
         logoutButton = new JButton("Logout");
+
+        int margin = 10;
+        employeeDepartmentButton.setBorder(new EmptyBorder(margin, margin, margin, margin));
+        employeeButton.setBorder(new EmptyBorder(margin, margin, margin, margin));
+        userButton.setBorder(new EmptyBorder(margin, margin, margin, margin));
+        foremanButton.setBorder(new EmptyBorder(margin, margin, margin, margin));
+        brigadeButton.setBorder(new EmptyBorder(margin, margin, margin, margin));
+        contractButton.setBorder(new EmptyBorder(margin, margin, margin, margin));
+        jobButton.setBorder(new EmptyBorder(margin, margin, margin, margin));
+        logoutButton.setBorder(new EmptyBorder(margin, margin, margin, margin));
 
         leftFrame.add(employeeDepartmentButton);
         leftFrame.add(employeeButton);

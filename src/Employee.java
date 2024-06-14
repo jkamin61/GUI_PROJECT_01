@@ -12,6 +12,7 @@ class Employee implements Comparable<Employee> {
         this.surname = surname;
         this.dateOfBirth = dateOfBirth;
         this.employeeDepartment = employeeDepartment;
+        employeeDepartment.addEmployeesToDepartment(this);
         employees.add(this);
     }
 

@@ -19,9 +19,9 @@ public class UserView  extends JPanel {
 
     public void loadUsers() {
         listModelUser.clear();
-        Employee employee1 = Employee.getEmployees().get(0);
-        User user = new User(employee1,"admin","admin");
-        listModelUser.addElement(user.toString());
+        for (User user : User.getUsers()) {
+            listModelUser.addElement(user.toString());
+        }
     }
 
     public void changeUserPassword() {
