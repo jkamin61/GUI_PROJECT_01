@@ -74,6 +74,11 @@ public class LeftFrame extends JPanel {
             mainApp.showCard("BrigadeView");
             TopFrame.updateActions("BrigadeView");
         });
+        logoutButton.addActionListener(e -> {
+            S29352.isLoggedIn = false;
+            S29352.frame.dispose();
+            Main.showLoginAndInitializeApp();
+        });
 
     }
 }

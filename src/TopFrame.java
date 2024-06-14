@@ -70,7 +70,9 @@ public class TopFrame extends JPanel {
         for (ActionListener al : deleteButton.getActionListeners()) {
             deleteButton.removeActionListener(al);
         }
-
+        for (ActionListener al : employeesButton.getActionListeners()) {
+            employeesButton.removeActionListener(al);
+        }
         if (cardName.equals("DepartmentView")) {
             createButton.setVisible(true);
             createButton.addActionListener(e -> departmentView.createDepartment());

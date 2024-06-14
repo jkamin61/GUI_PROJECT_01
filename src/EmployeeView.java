@@ -26,12 +26,7 @@ public class EmployeeView extends JPanel {
         }
 
         departmentComboBox.addActionListener(e -> {
-
         });
-
-        JPanel panel = new JPanel();
-        panel.add(new JLabel("Select Department:"));
-        add(panel, BorderLayout.NORTH);
     }
 
     private void updateDepartmentComboBox() {
@@ -101,6 +96,7 @@ public class EmployeeView extends JPanel {
             for (int i = selectedRow.length - 1; i >= 0; i--) {
                 Employee employee = Employee.getEmployees().get(selectedRow[i]);
                 Employee.getEmployees().remove(employee);
+                EmployeeDepartment.removeEmployeesFromDepartment(employee);
                 employeeTableModel.fireTableRowsDeleted(selectedRow[i], selectedRow[i]);
             }
         }

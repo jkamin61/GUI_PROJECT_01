@@ -1,51 +1,58 @@
 import javax.swing.*;
 import java.awt.*;
 
-public class LoginFrame extends JPanel{
+public class LoginFrame {
+    private JDialog dialog;
+    private JTextField loginField;
+    private JPasswordField passwordField;
+
     public LoginFrame() {
-        createLoginPanel();
+        createLoginDialog();
     }
 
-    public void createLoginPanel() {
-        JPanel loginPanel = new JPanel();
-        loginPanel.setLayout(new GridLayout(3, 1));
+    private void createLoginDialog() {
+        dialog = new JDialog((Frame) null, "Login", true);
+        dialog.setLayout(new GridLayout(3, 2));
+        dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+        dialog.setSize(300, 150);
+        dialog.setLocationRelativeTo(null);
 
-        JLabel loginLabel = new JLabel("Login");
-        JTextField loginField = new JTextField();
-        JLabel passwordLabel = new JLabel("Password");
-        JPasswordField passwordField = new JPasswordField();
+        JLabel loginLabel = new JLabel("Login:");
+        loginField = new JTextField();
+        JLabel passwordLabel = new JLabel("Password:");
+        passwordField = new JPasswordField();
         JButton loginButton = new JButton("Login");
 
-        loginPanel.add(loginLabel);
-        loginPanel.add(loginField);
-        loginPanel.add(passwordLabel);
-        loginPanel.add(passwordField);
-        loginPanel.add(loginButton);
+        dialog.add(loginLabel);
+        dialog.add(loginField);
+        dialog.add(passwordLabel);
+        dialog.add(passwordField);
+        dialog.add(new JLabel());
+        dialog.add(loginButton);
 
-        this.add(loginPanel);
+        loginButton.addActionListener(e -> {
+            String username = loginField.getText();
+            String password = new String(passwordField.getPassword());
+            if (validateCredentials(username, password)) {
+                Main.isLoggedIn = true;
+                showMessage("Logged in as: " + username);
+                dialog.dispose();
+            } else {
+                showMessage("Invalid credentials.");
+            }
+        });
     }
 
-    private void showLoginDialog() {
-        String username = JOptionPane.showInputDialog(S29352.frame, "Username:");
-        String password = JOptionPane.showInputDialog(S29352.frame, "Password:");
-
-        if (validateCredentials(username, password)) {
-            S29352.isLoggedIn = true;
-            updateUI();
-            showMessage("Logged in as: " + username);
-        } else {
-            showMessage("Błędne dane logowania.");
-            System.exit(0);
-        }
+    public void showLoginDialog() {
+        dialog.setVisible(true);
     }
 
-private boolean validateCredentials(String username, String password) {
-    if (username.equals("admin") && password.equals("admin")) {
-        return true;
-    } else return username.equals("user") && password.equals("user");
-}
+    private boolean validateCredentials(String username, String password) {
+        return (username.equals("admin") && password.equals("admin")) ||
+                (username.equals("user") && password.equals("user"));
+    }
 
-private void showMessage(String message) {
-    JOptionPane.showMessageDialog(S29352.frame, message);
-}
+    private void showMessage(String message) {
+        JOptionPane.showMessageDialog(dialog, message);
+    }
 }

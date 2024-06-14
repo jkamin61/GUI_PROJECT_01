@@ -11,20 +11,18 @@ public class S29352 {
         initialize();
     }
 
-    private void initialize() {
+    public void initialize() {
         frame = new JFrame("Task Sphere");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(800, 600);
         frame.setLayout(new BorderLayout());
 
-        // Create views
         EmployeeDepartmentView departmentView = new EmployeeDepartmentView();
         EmployeeView employeeView = new EmployeeView();
         UserView userView = new UserView();
         ForemanView foremanView = new ForemanView();
         BrigadeView brigadeView = new BrigadeView();
 
-        // Create main panel with CardLayout
         cardLayout = new CardLayout();
         mainPanel = new JPanel(cardLayout);
         mainPanel.add(departmentView, "DepartmentView");

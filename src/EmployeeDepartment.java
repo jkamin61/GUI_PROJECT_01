@@ -4,7 +4,7 @@ import java.util.List;
 
 public class EmployeeDepartment {
     private static List<EmployeeDepartment> departments = new ArrayList<>();
-    private List<Employee> employeesInDepartment = new ArrayList<>();
+    private static List<Employee> employeesInDepartment = new ArrayList<>();
     private String departmentName;
 
 
@@ -31,6 +31,10 @@ public class EmployeeDepartment {
 
     public void addEmployeesToDepartment(Employee employee) {
         employeesInDepartment.add(employee);
+    }
+
+    public static void removeEmployeesFromDepartment(Employee employee) {
+        employeesInDepartment.remove(employee);
     }
 
     public List<Employee> getEmployeesFromDepartment(EmployeeDepartment department) {
