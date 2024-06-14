@@ -1,5 +1,6 @@
 import java.time.LocalDateTime;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
 
 class Contract implements Runnable {
@@ -8,9 +9,10 @@ class Contract implements Runnable {
     private static int numberOfContracts = 0;
     private int contractId;
     Map<Integer, Job> jobs;
-    String foreman;
-    Map<String, String> employeesDepartment;
+    Foreman foreman;
+    Map<EmployeeDepartment, Employee> employeesDepartment;
     Brigade brigade;
+    HashSet<Brigade> brigades;
     boolean isBrigadeAssigned = false;
     LocalDateTime dateOfContractCreation;
     LocalDateTime dateOfStart;
@@ -18,7 +20,7 @@ class Contract implements Runnable {
     boolean isStarted = false;
     boolean isFinished = false;
 
-    public Contract(String foreman, Brigade brigade, LocalDateTime dateOfContractCreation) {
+    public Contract(Foreman foreman, Brigade brigade, LocalDateTime dateOfContractCreation) {
         this.contractId = ++numberOfContracts;
         this.jobs = new HashMap<>();
         this.foreman = foreman;
@@ -33,15 +35,15 @@ class Contract implements Runnable {
         this.contractStatus = isPlanned ? ContractStatus.PLANNED : ContractStatus.NOT_PLANNED;
     }
 
-    public Contract(Brigade brigade, boolean isPlaned) {
+    public Contract(Brigade brigade, boolean isPlanned) {
         this.brigade = brigade;
         this.isBrigadeAssigned = true;
-        this.contractStatus = isPlaned ? ContractStatus.PLANNED : ContractStatus.NOT_PLANNED;
+        this.contractStatus = isPlanned ? ContractStatus.PLANNED : ContractStatus.NOT_PLANNED;
     }
 
-    public Contract(HashMap<Integer, Job> jobs, boolean isPlaned) {
+    public Contract(HashMap<Integer, Job> jobs, boolean isPlanned) {
         this.jobs = jobs;
-        this.contractStatus = isPlaned ? ContractStatus.PLANNED : ContractStatus.NOT_PLANNED;
+        this.contractStatus = isPlanned ? ContractStatus.PLANNED : ContractStatus.NOT_PLANNED;
     }
 
     public Contract(HashMap<Integer, Job> jobs, boolean isPlanned, Brigade brigade) {
@@ -49,6 +51,10 @@ class Contract implements Runnable {
         this.contractStatus = isPlanned ? ContractStatus.PLANNED : ContractStatus.NOT_PLANNED;
         this.brigade = brigade;
         this.isBrigadeAssigned = true;
+    }
+
+    public void addBrigade(Brigade brigade) {
+        brigades.add(brigade);
     }
 
     public void addJobs(Job job) {
@@ -60,7 +66,7 @@ class Contract implements Runnable {
         jobs.get(jobId);
     }
 
-    public void addEmployeeToDepartment(String department, String employee) {
+    public void addEmployeeToContract(EmployeeDepartment department, Employee employee) {
         employeesDepartment.put(department, employee);
     }
 
@@ -68,7 +74,8 @@ class Contract implements Runnable {
         return this.foreman.equals(foreman);
     }
 
-    public void endContract(Contract contract) {
+
+    public static void endContract(Contract contract) {
         contract.isFinished = true;
         contract.dateOfEnd = LocalDateTime.now();
     }
@@ -87,8 +94,8 @@ class Contract implements Runnable {
     public String toString() {
         return "Contract {" +
                 ", contractId=" + contractId +
-                ", jobs number=" + jobs.keySet() +
-                ", foreman='" + foreman + '\'' +
+                ", jobs number=" + jobs +
+                ", foreman='" + foreman.getName() + " " + foreman.getSurname() + '\'' +
                 ", brigade=" + brigade +
                 ", isBrigadeAssigned=" + isBrigadeAssigned +
                 ", dateOfContractCreation=" + dateOfContractCreation +
@@ -100,5 +107,17 @@ class Contract implements Runnable {
         isStarted = true;
         System.out.println("Contract ID: " + contractId + " is running");
         System.out.println("Contract information: " + this);
+        if (!jobs.isEmpty()) {
+            for (Job job :
+                    jobs.values()) {
+                try {
+                    job.start();
+                    Job.watchJob(job);
+                    job.join();
+                } catch (InterruptedException e) {
+                    System.out.println(e.getMessage());
+                }
+            }
+        }
     }
 }

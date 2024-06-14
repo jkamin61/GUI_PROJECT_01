@@ -1,17 +1,29 @@
-import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Foreman extends User {
-    private String brigade;
-    List<Brigade> listOfBrigades;
-    List<Contract> listOfContracts;
+    List<Brigade> listOfBrigades = new ArrayList<>();
+    List<Contract> listOfContracts = new ArrayList<>();
+    User user;
+    static List<Foreman> foremans;
 
-    public Foreman(String name, String surname, LocalDateTime dateOfBirth, EmployeeDepartment department, String login, String password, String brigade) {
-        super(name, surname, dateOfBirth, department, login, password);
-        this.brigade = brigade;
+    public Foreman(User user) {
+        super(user.employee, user.getLogin(), user.getPassword());
+        this.user = user;
     }
 
-    public void addBrigade(Brigade brigade) {
+    public static List<Foreman> getForemans() {
+        if (foremans == null) {
+            foremans = new ArrayList<>();
+        }
+        return foremans;
+    }
+
+    public static void addForeman(User user) {
+        foremans.add(new Foreman(user));
+    }
+
+    public void setBrigade(Brigade brigade) {
         listOfBrigades.add(brigade);
     }
 
@@ -19,7 +31,7 @@ public class Foreman extends User {
         listOfContracts.add(contract);
     }
 
-    public List<Brigade> getBrigade() {
+    public List<Brigade> getBrigades() {
         return listOfBrigades;
     }
 
@@ -30,9 +42,9 @@ public class Foreman extends User {
     @Override
     public String toString() {
         return "Foreman{" +
-                "brigade='" + brigade + '\'' +
-                ", listOfBrigades=" + listOfBrigades +
-                ", listOfContracts=" + listOfContracts +
+                "listOfBrigades=" + getBrigades() +
+                ", listOfContracts=" + getListOfContracts() +
+                ", user=" + user.getLogin() +
                 '}';
     }
 }

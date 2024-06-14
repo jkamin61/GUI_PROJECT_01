@@ -1,25 +1,33 @@
-import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 public class User extends Employee {
     private String login;
     private String password;
-    private String initial;
+    public static String initial;
+    Employee employee;
+    private static List<User> users = new ArrayList<>();
 
-    public User(String name, String surname, LocalDateTime dateOfBirth, EmployeeDepartment department, String login, String password) {
-        super(name, surname, dateOfBirth, department);
+    public User(Employee employee, String login, String password) {
+        super(employee.getName(), employee.getSurname(), employee.getDateOfBirth(), employee.getDepartment());
+        this.employee = employee;
         this.login = login;
         this.password = password;
-        this.initial = (name.charAt(0) + "" + surname.charAt(0)).toUpperCase();
+        this.initial = (employee.getName().charAt(0) + "" + employee.getSurname().charAt(0)).toUpperCase();
+        users.add(this);
     }
 
-    public void setName(String name) {
-        super.setName(name);
-        this.initial = (name.charAt(0) + "" + this.getSurname().charAt(0)).toUpperCase();
+    public static List<User> getUsers() {
+        return users;
     }
 
-    public void setSurname(String surname) {
-        super.setSurname(surname);
-        this.initial = (this.getName().charAt(0) + "" + surname.charAt(0)).toUpperCase();
+    public static User getUserByLogin(String login) {
+        for (User user : users) {
+            if (user.getLogin().equals(login)) {
+                return user;
+            }
+        }
+        return null;
     }
 
     public String getLogin() {
@@ -30,16 +38,12 @@ public class User extends Employee {
         return password;
     }
 
+    public void setPassword(String newPassword) {
+        this.password = newPassword;
+    }
+
     public String getInitial() {
         return initial;
-    }
-
-    public void setLogin(String login) {
-        this.login = login;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
     }
 
     @Override
@@ -48,6 +52,9 @@ public class User extends Employee {
                 "login='" + login + '\'' +
                 ", password='" + password + '\'' +
                 ", initial='" + initial + '\'' +
+                ", employee=" + employee +
                 '}';
     }
+
+
 }
