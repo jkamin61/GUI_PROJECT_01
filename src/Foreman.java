@@ -5,7 +5,8 @@ public class Foreman extends User {
     List<Brigade> listOfBrigades = new ArrayList<>();
     List<Contract> listOfContracts = new ArrayList<>();
     User user;
-    static List<Foreman> foremans;
+    public static List<Foreman> foremans = new ArrayList<>();;
+
 
     public Foreman(User user) {
         super(user.employee, user.getLogin(), user.getPassword());
@@ -13,9 +14,6 @@ public class Foreman extends User {
     }
 
     public static List<Foreman> getForemans() {
-        if (foremans == null) {
-            foremans = new ArrayList<>();
-        }
         return foremans;
     }
 

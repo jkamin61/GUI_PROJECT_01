@@ -22,6 +22,8 @@ public class S29352 {
         UserView userView = new UserView();
         ForemanView foremanView = new ForemanView();
         BrigadeView brigadeView = new BrigadeView();
+        ContractView contractView = new ContractView();
+        JobView jobView = new JobView();
 
         cardLayout = new CardLayout();
         mainPanel = new JPanel(cardLayout);
@@ -30,8 +32,10 @@ public class S29352 {
         mainPanel.add(userView, "UserView");
         mainPanel.add(foremanView, "ForemanView");
         mainPanel.add(brigadeView, "BrigadeView");
+        mainPanel.add(contractView, "ContractView");
+        mainPanel.add(jobView, "JobView");
 
-        TopFrame topFrame = new TopFrame(this, departmentView, employeeView, userView, foremanView, brigadeView);
+        TopFrame topFrame = new TopFrame(this, departmentView, employeeView, userView, foremanView, brigadeView, contractView, jobView);
         LeftFrame leftFrame = new LeftFrame(this);
 
         frame.add(topFrame, BorderLayout.NORTH);

@@ -9,7 +9,6 @@ public class UserView  extends JPanel {
     private DefaultTableModel tableModelUser;
     private JTable tableData;
 
-
     public UserView() {
         setLayout(new BorderLayout());
         tableModelUser = new DefaultTableModel(new Object[]{"Password"}, 0);

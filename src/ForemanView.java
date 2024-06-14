@@ -1,72 +1,49 @@
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
 import java.awt.*;
-import java.util.Arrays;
 
 public class ForemanView extends JPanel {
-    private DefaultListModel<String> listModelForeman;
-    private JList<String> listData;
+    private DefaultTableModel tableModelForeman;
+    private JTable tableDataForeman;
     private JScrollPane scrollPane;
 
     public ForemanView() {
         setLayout(new BorderLayout());
-        listModelForeman = new DefaultListModel<>();
-        listData = new JList<>(listModelForeman);
-        listData.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
-        scrollPane = new JScrollPane(listData);
+        tableModelForeman = new DefaultTableModel(new Object[]{"Name", "Surname"}, 0);
+        tableDataForeman = new JTable(tableModelForeman);
+        tableDataForeman.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
+        scrollPane = new JScrollPane(tableDataForeman);
         add(scrollPane, BorderLayout.CENTER);
-
-        loadForemans();
-    }
-
-    public void loadForemans() {
-        listModelForeman.clear();
-        for (Foreman foreman : Foreman.getForemans()) {
-            listModelForeman.addElement(foreman.toString());
-        }
+        tableModelForeman.setRowCount(0);
     }
 
     public void addForeman() {
-        String foremanLogin = JOptionPane.showInputDialog(this, "Enter foreman name:");
-        if (foremanLogin != null && !foremanLogin.trim().isEmpty()) {
-            User user = User.getUserByLogin(foremanLogin);
-            if (user == null) return;
-            Foreman foreman = new Foreman(user);
-            listModelForeman.addElement(foreman.toString());
-        } else {
-            JOptionPane.showMessageDialog(this, "Foreman name cannot be empty.", "Error", JOptionPane.ERROR_MESSAGE);
+        String foremanName = JOptionPane.showInputDialog(this, "Enter Foreman Name:");
+        String foremanSurname = JOptionPane.showInputDialog(this, "Enter Foreman Surname:");
+        if (foremanName != null && !foremanName.isEmpty() && foremanSurname != null && !foremanSurname.isEmpty()) {
+            tableModelForeman.addRow(new Object[]{foremanName, foremanSurname});
         }
     }
 
     public void editForeman() {
-        int selectedIndex = listData.getSelectedIndex();
+        int selectedIndex = tableDataForeman.getSelectedRow();
         if (selectedIndex != -1) {
-            String foremanLogin = JOptionPane.showInputDialog(this, "Enter new foreman name:");
-            if (foremanLogin != null && !foremanLogin.trim().isEmpty()) {
-                User user = User.getUserByLogin(foremanLogin);
-                if (user == null) return;
-                //TODO: make possible to edit foreman
-//                Foreman foreman = Foreman.getForemans().get(selectedIndex);
-//                foreman.user = user;
-//                listModelForeman.set(selectedIndex, foreman.toString());
-            } else {
-                JOptionPane.showMessageDialog(this, "Foreman name cannot be empty.", "Error", JOptionPane.ERROR_MESSAGE);
+            String newForemanName = JOptionPane.showInputDialog(this, "Enter new foreman name:");
+            String newForemanSurname = JOptionPane.showInputDialog(this, "Enter new foreman surname:");
+            if (newForemanName != null && !newForemanName.isEmpty() && newForemanSurname != null && !newForemanSurname.isEmpty()) {
+                tableModelForeman.setValueAt(newForemanName, selectedIndex, 0);
+                tableModelForeman.setValueAt(newForemanSurname, selectedIndex, 1);
             }
-        } else {
-            JOptionPane.showMessageDialog(this, "No foreman selected.", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
 
     public void deleteForeman() {
-        int[] selectedIndices = listData.getSelectedIndices();
+        int[] selectedIndices = tableDataForeman.getSelectedRows();
         if (selectedIndices.length > 0) {
-            Arrays.sort(selectedIndices);
+            DefaultTableModel model = (DefaultTableModel) tableDataForeman.getModel();
             for (int i = selectedIndices.length - 1; i >= 0; i--) {
-                Foreman.getForemans().remove(selectedIndices[i]);
-                listModelForeman.removeElementAt(selectedIndices[i]);
+                model.removeRow(selectedIndices[i]);
             }
-        } else {
-            JOptionPane.showMessageDialog(this, "No foreman selected.", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
-
 }

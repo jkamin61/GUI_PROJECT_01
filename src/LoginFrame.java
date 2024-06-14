@@ -6,7 +6,7 @@ public class LoginFrame {
     private JTextField loginField;
     private JPasswordField passwordField;
     public static String initialPassword = "admin";
-
+    public static String initialUser = "AA";
     public LoginFrame() {
         createLoginDialog();
     }
