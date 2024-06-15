@@ -105,7 +105,7 @@ public class TopFrame extends JPanel {
             employeesButton.setVisible(false);
             contractsButton.setVisible(false);
         } else if (cardName.equals("UserView")) {
-            createButton.setVisible(true);
+            createButton.setVisible(false);
             editButton.setText("Change password");
             editButton.addActionListener(e -> userView.changePassword());
             deleteButton.setVisible(false);
